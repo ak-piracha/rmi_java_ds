@@ -9,12 +9,14 @@ public class CalculatorServer {
     public static void main(String[] args) {
         try {
             CalculatorImplementation obj = new CalculatorImplementation();
-            Calculator stub = (Calculator) UnicastRemoteObject.exportObject(obj, 0);
+            Registry registry = LocateRegistry.createRegistry(1099);
+            registry.rebind("Calculator", obj);
+            // Calculator stub = (Calculator) UnicastRemoteObject.exportObject(obj, 0);
 
             // Bind the remote object's stub in the registry
-            Registry registry = LocateRegistry.createRegistry(0);
+           
 //            Registry registry = LocateRegistry.getRegistry();
-            registry.rebind("Calculator", stub);
+            
 
             System.err.println("Server ready");
         } catch (Exception e) {
@@ -23,3 +25,4 @@ public class CalculatorServer {
         }
     }
 }
+

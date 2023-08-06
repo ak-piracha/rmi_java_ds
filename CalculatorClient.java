@@ -8,7 +8,7 @@ public class CalculatorClient {
     public static void main(String[] args) {
         String host = (args.length < 1) ? null : args[0];
         try {
-            Registry registry = LocateRegistry.getRegistry(host);
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             Calculator stub = (Calculator) registry.lookup("Calculator");
 
             Scanner scanner = new Scanner(System.in);

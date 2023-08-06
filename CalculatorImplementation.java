@@ -16,6 +16,11 @@ public class CalculatorImplementation extends UnicastRemoteObject implements Cal
 
     @Override
     public void pushOperation(String operator) throws RemoteException {
+        
+        if (stack.isEmpty()) {
+            throw new RemoteException("The stack is empty, no operation can be performed.");
+        }
+
         // This method assumes the stack has at least one value
         int result = stack.pop();
 
